@@ -4,8 +4,11 @@ import { Observable } from 'rxjs';
 
 // Response interface for /train endpoint
 export interface TrainResponse {
-  message: string;
-  chunks_processed?: number;
+  // message: string;
+  // chunks_processed?: number;
+  status:string,
+  message?:string,
+  user_id?:string,
 }
 
 // Request payload interface for /chat endpoint
@@ -15,8 +18,10 @@ export interface ChatRequest {
 
 // Response interface for /chat endpoint
 export interface ChatResponse {
-  query: string;
-  response: any;
+  // query: string;
+  // response: any;
+  answer: string;
+  documents: string
 }
 
 @Injectable({
@@ -25,7 +30,8 @@ export interface ChatResponse {
 
 export class ChatService {
 
-  private readonly baseUrl = 'http://localhost:8000';
+  // private readonly baseUrl = 'http://localhost:8000';
+  private readonly baseUrl = 'http://localhost:8002';
   private http = inject(HttpClient)
 
 
@@ -34,21 +40,21 @@ export class ChatService {
 
     if (files instanceof FileList) {
       for (let i = 0; i < files.length; i++) {
-        formData.append('files', files[i]);
+        formData.append('file', files[i]);
       }
     } else {
       files.forEach((file) => {
-        formData.append('files', file);
+        formData.append('file', file);
       });
     }
 
-    return this.http.post<TrainResponse>(`${this.baseUrl}/train`, formData);
+    return this.http.post<TrainResponse>(`${this.baseUrl}/api/v1/upload`, formData);
   }
 
 
   getRagResponse(query: string): Observable<ChatResponse> {
     const payload: ChatRequest = { query };
-    return this.http.post<ChatResponse>(`${this.baseUrl}/chat`, payload);
+    return this.http.post<ChatResponse>(`${this.baseUrl}/api/v1/ask`, payload);
   }
 
 

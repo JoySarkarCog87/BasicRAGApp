@@ -111,7 +111,7 @@ export class Chatbot {
           msg.pop();
           return [...msg, {
             sender: 'bot',
-            text: response.response?.answer,
+            text: response.answer,
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
           }]
         });

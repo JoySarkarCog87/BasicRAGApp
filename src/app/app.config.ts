@@ -4,7 +4,8 @@ import { provideOktaAuth, withOktaConfig } from '@okta/okta-angular';
 
 import { routes } from './app.routes';
 import OktaAuth from '@okta/okta-auth-js';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './interceptor/auth-interceptor';
 
 const oktaAuth = new OktaAuth({
   issuer:'https://integrator-1111220.okta.com/oauth2/default',
@@ -17,7 +18,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([authInterceptor])
+    ),
     provideOktaAuth(
       withOktaConfig({
         oktaAuth

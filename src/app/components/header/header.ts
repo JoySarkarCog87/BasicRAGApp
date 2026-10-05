@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user-service';
 import { OKTA_AUTH, OktaAuthStateService } from '@okta/okta-angular';
 import { combineLatest, firstValueFrom } from 'rxjs';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ export class Header {
   private userService = inject(UserService);
   private authStateService = inject(OktaAuthStateService);
   private oktaAuth = inject(OKTA_AUTH);
+  private authService = inject(Auth);
   // auth: string | null = null;
   auth = signal<string | null>(null)
   isLoggedIn = signal(false);
@@ -45,7 +47,8 @@ export class Header {
   async logout() {
     const authProvider = localStorage.getItem('auth-provider');
     if(authProvider=='okta'){
-      await this.oktaAuth.signOut();
+      this.authService.removeToken();
+      await this.oktaAuth.signOut();     
       return;
     }
     localStorage.setItem('auth-provider','custom')

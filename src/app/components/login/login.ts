@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service';
 import { OKTA_AUTH, OktaAuthStateService } from '@okta/okta-angular';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class Login {
   private router = inject(Router);
   private oktaAuth = inject(OKTA_AUTH);
   private authStateService = inject(OktaAuthStateService);
+  private authService = inject(Auth);
 
   loginForm!: FormGroup;
   showPassword = false;
@@ -55,10 +57,13 @@ export class Login {
     console.log(user);
     if(this.pageMode=='Login'){
       const success = this.userService.login(user.email, user.password);
+      console.log('Login success : '+success)
       if(success){
         localStorage.setItem('auth-provider', 'custom');
+        this.authService.saveToken(this.authService.generateToken());
         this.router.navigateByUrl('home')
       }
+
     }else{
       console.log('Start signup....')
     }
@@ -66,6 +71,8 @@ export class Login {
 
   async openOktaLogin(){
     localStorage.setItem('auth-provider', 'okta');
+    this.authService.saveToken(this.authService.generateToken());
+
     // signInWithRedirect only stores the originalUri when one is passed; without it
     // the callback restores '/' and lands on home instead of the dashboard.
     await this.oktaAuth.signInWithRedirect({ originalUri: '/adashboard' });
