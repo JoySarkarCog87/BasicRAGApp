@@ -45,7 +45,7 @@
                         </div>
 
                         <!-- Role Selection (Checkboxes) -->
-                        <div class="mb-4" formGroupName="roles">
+                        <!-- <div class="mb-4" formGroupName="roles">
                             <label class="form-label fw-semibold small text-dark d-block mb-2">Select Roles</label>
                             <div class="d-flex gap-4 p-2 bg-light rounded-3 border">
                                 <div class="form-check">
@@ -63,13 +63,32 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill fw-bold shadow-sm"
                             [disabled]="loginForm.invalid">
                             {{pageMode}} <i class="bi bi-arrow-right-short ms-1"></i>
                         </button>
                     </form>
+
+                    <!-- Divider -->
+                    <div class="sso-divider text-center my-4">
+                        <span class="small text-muted px-2">or continue with</span>
+                    </div>
+
+                    <!-- Okta SSO - primary route for enterprise accounts -->
+                    <button type="button" class="btn btn-okta w-100 py-2 rounded-pill fw-bold d-flex align-items-center justify-content-center"
+                        (click)="openOktaLogin()">
+                        <svg class="okta-mark me-2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 14.5a4.5 4.5 0 110-9 4.5 4.5 0 010 9z" />
+                        </svg>
+                        Sign in with Okta
+                        <span class="badge rounded-pill bg-white text-dark ms-2 fw-semibold sso-badge">SSO</span>
+                    </button>
+                    <p class="text-center text-muted mt-3 mb-0 sso-hint">
+                        <i class="bi bi-shield-check me-1"></i> Single sign-on for organization accounts
+                    </p>
                 </div>
 
                 <div class="card-footer bg-light text-center py-3 border-0">
@@ -79,7 +98,7 @@
                         }@else{
                             Already have an account?
                         }
-                        <button class="btn"
+                        <button class="btn btn-link p-0 align-baseline fw-semibold text-decoration-none"
                         (click)="toggolePageMode()"
                         >
                         @if(pageMode=='Login'){
@@ -87,9 +106,6 @@
                         }@else{
                             Login
                         }
-                    </button>
-                    <button class="btn" (click)="openOktaLogin()">
-                        Login with Okta
                     </button>
                     </p>
                 </div>

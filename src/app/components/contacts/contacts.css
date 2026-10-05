@@ -1,0 +1,39 @@
+/* Matches the tinted hero on the home page */
+.contact-hero {
+  background: radial-gradient(100% 100% at 50% 0%, rgba(13, 110, 253, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.contact-lede {
+  max-width: 34rem;
+}
+
+.channel-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.success-ring {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+}
+
+/* Keep input-group borders consistent while focused, as on the login card */
+.input-group:focus-within .input-group-text,
+.input-group:focus-within .form-control {
+  background-color: #ffffff !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: none;
+}

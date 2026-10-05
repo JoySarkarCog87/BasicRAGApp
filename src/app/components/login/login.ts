@@ -12,6 +12,7 @@ import { OKTA_AUTH, OktaAuthStateService } from '@okta/okta-angular';
   styleUrl: './login.css',
 })
 export class Login {
+
   private fb = inject(FormBuilder);
   private userService = inject(UserService);
   private router = inject(Router);
@@ -26,16 +27,16 @@ export class Login {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      roles: this.fb.group({
-        user: [true],
-        admin: [false]
-      })
+      // roles: this.fb.group({
+      //   user: [true],
+      //   admin: [false]
+      // })
     });
 
     this.authStateService.authState$.subscribe(authState => {
       if (authState?.isAuthenticated) {
         this.userService.isLoggedin.next(true);
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('adashboard');
       }
     });
   }
@@ -65,7 +66,9 @@ export class Login {
 
   async openOktaLogin(){
     localStorage.setItem('auth-provider', 'okta');
-    await this.oktaAuth.signInWithRedirect();
+    // signInWithRedirect only stores the originalUri when one is passed; without it
+    // the callback restores '/' and lands on home instead of the dashboard.
+    await this.oktaAuth.signInWithRedirect({ originalUri: '/adashboard' });
   }
 
 }

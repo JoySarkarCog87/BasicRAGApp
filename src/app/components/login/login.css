@@ -22,3 +22,77 @@
   background-color: #0d6efd;
   border-color: #0d6efd;
 }
+
+/* "or continue with" rule that breaks around the label */
+.sso-divider {
+  position: relative;
+}
+
+.sso-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #dee2e6;
+}
+
+.sso-divider span {
+  position: relative;
+  background-color: #ffffff;
+}
+
+/* Okta SSO button - deliberately the boldest control on the card */
+.btn-okta {
+  background: linear-gradient(135deg, #00297a 0%, #007dc1 100%);
+  border: none;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  box-shadow: 0 0.35rem 1rem rgba(0, 125, 193, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btn-okta:hover,
+.btn-okta:focus {
+  color: #ffffff;
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 0.6rem 1.5rem rgba(0, 125, 193, 0.45);
+}
+
+.btn-okta:active {
+  transform: translateY(0);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 125, 193, 0.4);
+}
+
+.btn-okta:focus-visible {
+  outline: 3px solid rgba(0, 125, 193, 0.45);
+  outline-offset: 2px;
+}
+
+.okta-mark {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.sso-badge {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+}
+
+.sso-hint {
+  font-size: 0.78rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-okta {
+    transition: none;
+  }
+
+  .btn-okta:hover,
+  .btn-okta:focus {
+    transform: none;
+  }
+}

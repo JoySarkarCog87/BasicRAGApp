@@ -22,7 +22,9 @@ export interface ChatResponse {
 @Injectable({
   providedIn: 'root',
 })
+
 export class ChatService {
+
   private readonly baseUrl = 'http://localhost:8000';
   private http = inject(HttpClient)
 

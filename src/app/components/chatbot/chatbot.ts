@@ -3,12 +3,6 @@ import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core'
 import { FormsModule } from '@angular/forms';
 import { ChatResponse, ChatService, TrainResponse } from '../../services/chat-service';
 
-interface Message {
-  sender: 'bot' | 'user';
-  text: string;
-  time: string;
-}
-
 @Component({
   selector: 'app-chatbot',
   imports: [CommonModule, FormsModule],
@@ -16,7 +10,9 @@ interface Message {
   styleUrl: './chatbot.css',
 })
 export class Chatbot {
+  
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
+ 
 
   private ragService = inject(ChatService);
 
@@ -25,12 +21,14 @@ export class Chatbot {
   failedStep: number | null = null; // Set step index if processing fails (e.g., 2)
   isReady: boolean = false;
   userInput: string = '';
+  isThinking = false;
+  
 
   messages = signal([
     {
-      sender: 'bot',
-      text: 'Hello! Upload a document using the stepper above to start querying your knowledge base.',
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+       sender: 'bot',
+       text: 'Upload pdf or text documents first to start the conversation...',
+       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
 

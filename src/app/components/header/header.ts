@@ -16,11 +16,14 @@ export class Header {
   private userService = inject(UserService);
   private authStateService = inject(OktaAuthStateService);
   private oktaAuth = inject(OKTA_AUTH);
-
+  // auth: string | null = null;
+  auth = signal<string | null>(null)
   isLoggedIn = signal(false);
 
   ngOnInit() {
     const u = localStorage.getItem('basicRAGAppUser')
+    this.auth.set(localStorage.getItem('auth-provider'))
+
     if (u) {
       this.isLoggedIn.set(true);
       this.userService.isLoggedin.next(true);
@@ -45,6 +48,7 @@ export class Header {
       await this.oktaAuth.signOut();
       return;
     }
+    localStorage.setItem('auth-provider','custom')
     localStorage.removeItem('basicRAGAppUser');
     this.userService.isLoggedin.next(false);
   }

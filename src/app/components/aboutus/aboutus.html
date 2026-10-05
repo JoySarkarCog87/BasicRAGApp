@@ -1,1 +1,222 @@
-<p>aboutus works!</p>
+<!-- Hero -->
+<section class="about-hero py-5 py-lg-6 border-bottom">
+  <div class="container py-4">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-8">
+        <span
+          class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2 mb-3 fw-bold">
+          <i class="bi bi-people-fill me-1"></i> About Us
+        </span>
+        <h1 class="display-5 fw-bold text-dark lh-sm mb-3">
+          We build retrieval you can actually trust
+        </h1>
+        <p class="lead text-secondary mb-0">
+          BasicRAGApp started as an internal tool to stop a support chatbot from inventing refund policies. It
+          turned into a full retrieval pipeline — ingestion, hybrid search, and citation-backed answers.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats strip -->
+<section class="py-4 bg-white border-bottom">
+  <div class="container">
+    <div class="row g-3 text-center">
+      @for (stat of stats; track stat.label) {
+      <div class="col-6 col-lg-3">
+        <div class="py-3">
+          <i class="bi {{ stat.icon }} text-primary fs-4 d-block mb-2"></i>
+          <div class="fs-3 fw-bold lh-1 text-dark">{{ stat.value }}</div>
+          <div class="text-muted small">{{ stat.label }}</div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="py-5 bg-white">
+  <div class="container py-4">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <h2 class="fw-bold text-dark mb-3">Our mission</h2>
+        <p class="text-secondary">
+          Large language models are excellent writers and unreliable librarians. Ask one a question outside its
+          training data and it will still answer — fluently, confidently, and sometimes entirely wrong.
+        </p>
+        <p class="text-secondary mb-4">
+          Retrieval-Augmented Generation fixes the librarian problem: fetch the real passage first, then let the
+          model write from it. Our job is to make that retrieval step fast, auditable, and boring enough to put in
+          production.
+        </p>
+        <ul class="list-unstyled mb-0">
+          <li class="d-flex mb-2">
+            <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+            <span class="text-secondary small">Ingest PDFs, text, and database records without custom scripts</span>
+          </li>
+          <li class="d-flex mb-2">
+            <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+            <span class="text-secondary small">Hybrid keyword and vector search for precise context</span>
+          </li>
+          <li class="d-flex">
+            <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+            <span class="text-secondary small">Every answer cites the chunks that produced it</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+          <div class="card-header bg-dark text-white d-flex align-items-center px-3 py-2">
+            <span class="bg-danger rounded-circle d-inline-block me-1 dot"></span>
+            <span class="bg-warning rounded-circle d-inline-block me-1 dot"></span>
+            <span class="bg-success rounded-circle d-inline-block me-2 dot"></span>
+            <small class="text-white-50 font-monospace">retrieval.log</small>
+          </div>
+          <div class="card-body bg-dark text-light p-4 font-monospace small">
+            <p class="text-info mb-1">&gt; query: "annual leave carry-over limit?"</p>
+            <p class="text-white-50 mb-1">&gt; bm25 candidates: 24</p>
+            <p class="text-white-50 mb-3">&gt; reranked to top-3</p>
+            <div class="p-3 bg-secondary bg-opacity-25 rounded border border-secondary border-opacity-50 mb-2">
+              <div class="text-white-50">HR/Policy-2024.pdf &middot; p.12</div>
+              <div class="text-success">score 0.96</div>
+            </div>
+            <p class="text-warning mb-0">&gt; answered with 3 citations &middot; 0 fabrications</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="py-5 bg-light border-top border-bottom">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-dark">What we optimise for</h2>
+      <p class="text-muted mb-0">Three principles that decide every trade-off we make.</p>
+    </div>
+    <div class="row g-4">
+      @for (value of values; track value.title) {
+      <div class="col-md-4">
+        <div class="card h-100 border-0 bg-white p-4 rounded-4 shadow-sm value-card">
+          <div class="text-primary fs-2 mb-3">
+            <i class="bi {{ value.icon }}"></i>
+          </div>
+          <h3 class="fw-bold fs-5 text-dark">{{ value.title }}</h3>
+          <p class="text-muted small mb-0">{{ value.body }}</p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Stack -->
+<section class="py-5 bg-white">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-dark">Built on</h2>
+      <p class="text-muted mb-0">A deliberately small, replaceable stack.</p>
+    </div>
+    <div class="row g-3 justify-content-center">
+      @for (item of stack; track item.name) {
+      <div class="col-6 col-md-3">
+        <div class="border rounded-4 p-3 text-center h-100">
+          <div class="fw-bold text-dark">{{ item.name }}</div>
+          <div class="text-muted small">{{ item.note }}</div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 bg-primary">
+  <div class="container py-4 text-center">
+    <h2 class="fw-bold text-white mb-2">Ready to ground your chatbot?</h2>
+    <p class="text-white-50 mb-4">Upload a document and ask it a question — it takes about a minute.</p>
+    <button class="btn btn-light btn-lg text-primary px-4 fw-bold rounded-pill shadow" (click)="getStarted()">
+      Get Started Free <i class="bi bi-arrow-right-short ms-1"></i>
+    </button>
+  </div>
+</section>
+
+
+<!-- learning modal in bootstrap -->
+<!-- <button
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#userModal">
+  Open Modal
+</button>
+
+<div class="modal fade" id="userModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div> -->
+
+
+<!-- angulars way of creating modal -->
+<!-- <br>
+<button class="btn btn-primary" (click)="openModal()">Open Modal</button>
+<p>
+  Name: {{ username() }}
+</p>
+
+@if (modalOpen()) {
+
+  <div class="modal-backdrop fade show"></div>
+
+  <div class="modal d-block">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">
+            My Modal
+          </h5>
+
+          <button
+            class="btn-close"
+            (click)="closeModal()">
+          </button>
+
+        </div>
+
+        <div class="modal-body">
+
+        <input
+            #nameInput
+            class="form-control"
+            placeholder="Enter your name">
+
+        </div>
+
+        <div class="modal-footer">
+
+        <button
+            class="btn btn-secondary"
+            (click)="closeModal()">
+            Cancel
+        </button>
+
+        <button
+            class="btn btn-primary"
+            (click)="saveName(nameInput.value)">
+            Save
+        </button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+} -->

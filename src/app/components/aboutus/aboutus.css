@@ -1,0 +1,26 @@
+/* Matches the tinted hero on the home page */
+.about-hero {
+  background: radial-gradient(100% 100% at 50% 0%, rgba(13, 110, 253, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+}
+
+.value-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.08) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .value-card,
+  .value-card:hover {
+    transition: none;
+    transform: none;
+  }
+}
